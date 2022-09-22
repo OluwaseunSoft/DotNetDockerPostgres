@@ -15,17 +15,29 @@ namespace DotNetDockerPostgres.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Unit>> GetPlatforms()
+        [HttpPost("CentimeterToInches")]
+        public ActionResult<double> CentimeterToInches(double centimeters)
         {
             try
             {
-                System.Console.WriteLine("==> Getting Platforms");
-
-                var platformItem = _context.Units.ToList();
-                return Ok(platformItem);
+                return Ok(centimeters / 2.54);
             }
             catch(Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                return BadRequest();
+            }
+        }
+
+
+        [HttpPost("InchesToCentimeters")]
+        public ActionResult<double> InchesToCentimeters(double inches)
+        {
+            try
+            {
+                return Ok(inches * 2.54);
+            }
+            catch (Exception ex)
             {
                 System.Console.WriteLine(ex.Message);
                 return BadRequest();
