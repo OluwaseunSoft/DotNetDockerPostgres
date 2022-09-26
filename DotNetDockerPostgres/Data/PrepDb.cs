@@ -18,52 +18,52 @@
                 context.Units.AddRange(
                     new Data.Unit()
                     {
-                        MetricUnits = "centimetersToInches",
+                        MetricUnit = "centimetersToInches",
                         MetricValue = "2.54"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "inchesToCentimeteres",
+                        MetricUnit = "inchesToCentimeteres",
                         MetricValue = "2.54"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "gramsToOunces",
+                        MetricUnit = "gramsToOunces",
                         MetricValue = "28.35"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "ouncesToGrams",
+                        MetricUnit = "ouncesToGrams",
                         MetricValue = "28.35"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "litresToPints",
+                        MetricUnit = "litresToPints",
                         MetricValue = "1.76"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "pintsToLitres",
+                        MetricUnit = "pintsToLitres",
                         MetricValue = "1.76"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "CelsiusToFahrenheit",
+                        MetricUnit = "CelsiusToFahrenheit",
                         MetricValue = "32"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "FahrenheitToCelsius",
+                        MetricUnit = "FahrenheitToCelsius",
                         MetricValue = "32"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "MilesToKilometer",
+                        MetricUnit = "MilesToKilometer",
                         MetricValue = "1.609344"
                     },
                     new Data.Unit()
                     {
-                        MetricUnits = "KilometerToMiles",
+                        MetricUnit = "KilometerToMiles",
                         MetricValue = "1.6"
                     });
                 context.SaveChanges();

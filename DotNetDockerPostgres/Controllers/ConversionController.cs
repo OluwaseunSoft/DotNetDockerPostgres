@@ -15,6 +15,20 @@ namespace DotNetDockerPostgres.Controllers
             _repo = repo;
         }
 
+        [HttpPost("CreateMetricUnit")]
+        public ActionResult<Unit> CreateMetricUnit(UnitCreateDto createDto)
+        {
+            var data = new Unit
+            {
+                MetricUnit = createDto.MetricUnit,
+                MetricValue = createDto.MetricValue
+            };
+            _repo.CreateConversionUnit(data);
+            _repo.SaveChanges();
+
+            return CreatedAtRoute(nameof(GetMetricUnitId), new { Id = data.Id }, data);
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<Unit>> GetMetricUnits()
         {
