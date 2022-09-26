@@ -8,11 +8,25 @@ namespace DotNetDockerPostgres.Controllers
     [ApiController]
     public class ConversionController : ControllerBase
     {
-        private readonly ConversionRateDBContext _context;
+        private readonly IConversionTableRepo _repo;
 
-        public ConversionController(ConversionRateDBContext context)
+        public ConversionController(IConversionTableRepo repo)
         {
-            _context = context;
+            _repo = repo;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Unit>> GetMetricUnits()
+        {
+            var unitList = _repo.GetAllConversionUnit();
+            return Ok(unitList);
+        }
+
+        [HttpGet("id", Name = "GetMetricUnitId")]
+        public ActionResult<Unit> GetMetricUnitId(int id)
+        {
+            var unit = _repo.GetConversionUnitById(id);
+            return Ok(unit);
         }
 
         [HttpPost("CentimeterToInches")]
@@ -20,9 +34,10 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(centimeters / 2.54);
+                var unit = _repo.GetConversionUnitById(1);
+                return Ok(centimeters / double.Parse(unit.MetricValue));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Console.WriteLine(ex.Message);
                 return BadRequest();
@@ -35,7 +50,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(inches * 2.54);
+                var unit = _repo.GetConversionUnitById(2);
+                return Ok(inches * double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {
@@ -49,7 +65,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(grams / 28.35);
+                var unit = _repo.GetConversionUnitById(3);
+                return Ok(grams / double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {
@@ -63,7 +80,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(ounce * 28.35);
+                var unit = _repo.GetConversionUnitById(4);
+                return Ok(ounce * double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {
@@ -77,7 +95,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(litres * 1.76);
+                var unit = _repo.GetConversionUnitById(5);
+                return Ok(litres * double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {
@@ -91,7 +110,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(pints / 1.76);
+                var unit = _repo.GetConversionUnitById(6);
+                return Ok(pints / double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {
@@ -105,7 +125,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(((celsius * 9) / 5) + 32);
+                var unit = _repo.GetConversionUnitById(7);
+                return Ok(((celsius * 9) / 5) + double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {
@@ -120,7 +141,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok((fahrenheit - 32) * 5 / 9);
+                var unit = _repo.GetConversionUnitById(8);
+                return Ok((fahrenheit - double.Parse(unit.MetricValue)) * 5 / 9);
             }
             catch (Exception ex)
             {
@@ -135,7 +157,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(kilometers / 1.6);
+                var unit = _repo.GetConversionUnitById(10);
+                return Ok(kilometers / double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {
@@ -149,7 +172,8 @@ namespace DotNetDockerPostgres.Controllers
         {
             try
             {
-                return Ok(miles * 1.609344);
+                var unit = _repo.GetConversionUnitById(9);
+                return Ok(miles * double.Parse(unit.MetricValue));
             }
             catch (Exception ex)
             {

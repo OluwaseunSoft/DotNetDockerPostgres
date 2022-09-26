@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string MetricUnits { get; set; }
-        public string ConversionValue { get; set; }
+        public string MetricValue { get; set; }
     }
 }

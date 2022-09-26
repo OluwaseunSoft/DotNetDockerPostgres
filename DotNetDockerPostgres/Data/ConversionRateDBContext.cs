@@ -4,16 +4,10 @@ namespace DotNetDockerPostgres.Data
 {
     public class ConversionRateDBContext : DbContext
     {
-        private readonly IConfiguration _config;
 
-        public ConversionRateDBContext(IConfiguration configuration)
+        public ConversionRateDBContext(DbContextOptions<ConversionRateDBContext> opt) : base(opt)
         {
-            _config = configuration;
-        }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(_config.GetConnectionString("WebApiDatabase"));
         }
 
         public DbSet<Unit> Units { get; set; }

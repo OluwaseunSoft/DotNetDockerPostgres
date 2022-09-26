@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddDbContext<ConversionRateDBContext>(opt =>
+    opt.UseInMemoryDatabase("InMem"));
+builder.Services.AddScoped<IConversionTableRepo, ConversionTableRepo>();
 builder.Services.AddDbContext<ConversionRateDBContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase"));
@@ -28,5 +30,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+PrepDb.PrepPopulation(app);
 
 app.Run();
